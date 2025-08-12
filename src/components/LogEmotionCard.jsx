@@ -22,7 +22,7 @@ const LogEmotionCard = ({onClose}) => {
       <img src={joyful} alt="" className='size-30'/>
       <p className='font-bold text-2xl mb-3'>I'm feeling Sad</p>
       <form className='flex flex-col gap-3 justify-center items-center'>
-      <textarea placeholder="Write down your thoughts and reflect on how you're feeling!" name="" id="" className='w-96 h-32 p-3 border-gray-700 border rounded-md'></textarea>
+      <textarea placeholder="Write down your thoughts and reflect on how you're feeling!" name="" id="" className='w-96 h-32 p-3  rounded-md bg-white border-gray-900 border opacity-60 text-black'></textarea>
       <button type='submit' className='bg-amber-500 text-white rounded-2xl w-40 h-10'>Save</button>
       </form>
        </div>
