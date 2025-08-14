@@ -1,11 +1,15 @@
-import React , {useRef, useState} from 'react'
+import React , {useRef, useState, useContext } from 'react'
 import joyful from '../assets/joyful.png'
 import { X } from 'lucide-react';
+import {EmotionContext} from '../context/EmotionContext';
 
 
 
-const LogEmotionCard = ({onClose, onSaveThoughts, onSaveEmotions, emotion}) => {
+const LogEmotionCard = ({onClose, onSaveThoughts}) => {
   const [thoughtText, setThoughtText] = useState('')
+  const {emotion} = useContext(EmotionContext);
+  const emotionIcons = import.meta.glob('../assets/*.png', { eager: true });
+  // console.log(emotion);
   
   const cardRef = useRef();
   const closePopup = (e) =>{
@@ -21,11 +25,8 @@ const LogEmotionCard = ({onClose, onSaveThoughts, onSaveEmotions, emotion}) => {
   function handleSubmit(e){
     e.preventDefault();
     onSaveThoughts(thoughtText);
-    onSaveEmotions(emotion)
-    console.log(emotion);
-    
-    // console.log(thoughtText);
-    
+    // onSaveEmotions(emotion)
+    // console.log(emotion);
     onClose();
     
   }
@@ -37,7 +38,7 @@ const LogEmotionCard = ({onClose, onSaveThoughts, onSaveEmotions, emotion}) => {
       <div ref = {cardRef} className='bg-[linear-gradient(to_top,#ffd6c0,#ebd8ff)] flex flex-col justify-center items-center mx-30 w-2/3 p-10 shadow-lg rounded-2xl'>
 
       <h1 className='font-extrabold text-3xl'>Log Emotion</h1>
-      <img src={joyful} alt="" className='size-30'/>
+      <img src={emotionIcons[`../assets/${emotion.toLowerCase()}.png`].default} alt={emotion} className='size-30'/>
       <p className='font-bold text-2xl mb-3'>I'm feeling {emotion}</p>
 
       <div  className='flex flex-col gap-3 justify-center items-center'>
