@@ -1,24 +1,44 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import MoodForm from './components/MoodForm'
 import MoodList from './components/MoodList'
 import { EmotionProvider } from './context/EmotionContext'
-// import {EmotionContext} from './context/EmotionContext'
 
 
 function App() {
-  const [thoughts, setThoughts] = useState([])
-  // const [emotion, setEmotion] = useState('')
-
-  const onHandlethoughts = (thought) =>{
-    setThoughts((prev)=> [...prev, thought])
+  const [thoughts, setThoughts] = useState(()=>{
+  const saved = window.localStorage.getItem('thoughtsList');
+   return saved ? JSON.parse(saved) : [];
+  })
+// emotion: sad, happy, angry and thought: anything you write inside the textarea
+  const onHandlethoughts = (emotion, thought) =>{
+    console.log("emotion:", emotion);
+    console.log("thought:", thought);
+    setThoughts((prev)=> [...prev, {emotion, thought}])
   }
+
+  const editThought = (oldThought)=>{
+    let updatedThought = prompt('Edit thought:', oldThought.thought)
+    if(updatedThought !== null){
+      setThoughts(thoughts.map(i=>i===oldThought? {...i, thought: updatedThought}: i))
+      console.log("updated");
+      
+    }
+  }
+
+  const deleteThought = (thought)=>{
+  setThoughts(thoughts.filter(i=>i!==thought))
+}
+
+useEffect(()=>{
+  window.localStorage.setItem('thoughtsList', JSON.stringify(thoughts))
+}, [thoughts])
 
   return (
     <EmotionProvider>
     <div className="relative min-h-screen w-full overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffd6c0,#ebd8ff)] blur-xl opacity-80 -z-10"></div>
       <MoodForm onHandlethoughts={onHandlethoughts}/>
-      <MoodList thoughts={thoughts}/>     
+      <MoodList thoughts={thoughts} onDelete={deleteThought} onEdit={editThought}/>     
     </div>
     </EmotionProvider>
   )

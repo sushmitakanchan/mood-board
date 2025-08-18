@@ -7,8 +7,8 @@ import {EmotionContext} from '../context/EmotionContext';
 
 const LogEmotionCard = ({onClose, onSaveThoughts}) => {
   const [thoughtText, setThoughtText] = useState('')
-  const {emotion} = useContext(EmotionContext);
-  const emotionIcons = import.meta.glob('../assets/*.png', { eager: true });
+  const {emotion, setEmotion, emotionIcons} = useContext(EmotionContext);
+  
   // console.log(emotion);
   
   const cardRef = useRef();
@@ -20,13 +20,10 @@ const LogEmotionCard = ({onClose, onSaveThoughts}) => {
     }
   }
 
-  
-  
   function handleSubmit(e){
     e.preventDefault();
-    onSaveThoughts(thoughtText);
-    // onSaveEmotions(emotion)
-    // console.log(emotion);
+    onSaveThoughts(emotion, thoughtText);
+    setEmotion('')
     onClose();
     
   }
@@ -40,7 +37,7 @@ const LogEmotionCard = ({onClose, onSaveThoughts}) => {
       <h1 className='font-extrabold text-3xl'>Log Emotion</h1>
       <img src={emotionIcons[`../assets/${emotion.toLowerCase()}.png`].default} alt={emotion} className='size-30'/>
       <p className='font-bold text-2xl mb-3'>I'm feeling {emotion}</p>
-
+    
       <div  className='flex flex-col gap-3 justify-center items-center'>
       <textarea placeholder="Write down your thoughts and reflect on how you're feeling!" 
       value={thoughtText}

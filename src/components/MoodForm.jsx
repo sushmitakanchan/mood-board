@@ -10,7 +10,7 @@ import { EmotionContext } from "../context/EmotionContext";
 
 const MoodForm = ({ onHandlethoughts }) => {
   const [showLogEmotionCard, setShowLogEmotionCard] = useState(false);
-  const { setEmotion, moods, saveMood } = useContext(EmotionContext);
+  const { emotion, setEmotion, saveMood } = useContext(EmotionContext);
   
   const senseEmotion = (e) => {
     e.preventDefault();
@@ -44,10 +44,9 @@ const MoodForm = ({ onHandlethoughts }) => {
                 <img src={angry} alt="" id="Angry" className="h-40 w-35" />
               </button>
             </div>
-            <div>
-              <h1 className="font-bold text-2xl">How are you feeling today?</h1>
-              {/* {moods? moods : "How are you feeling today?"} */}
-              <p className="font-light text-gray-900">
+            <div className="mb-1 flex flex-col gap-1">
+              {emotion ?  <h1 className="font-bold text-2xl text-pink-600 ml-5">Your energy: {emotion}</h1> : <h1 className="font-bold text-2xl">How are you feeling today?</h1>}
+              <p className="font-light text-gray-900 ml-6">
                 Pause and take a moment to reflect.
               </p>
               <button
@@ -55,7 +54,7 @@ const MoodForm = ({ onHandlethoughts }) => {
                   e.preventDefault();
                   setShowLogEmotionCard(true);
                 }}
-                className="bg-amber-600 p-2 rounded-lg h-10 min-w-60 hover:bg-amber-500 cursor-pointer mb-6 text-white"
+                className="bg-amber-600 p-2 rounded-lg h-10 min-w-70 hover:bg-amber-500 cursor-pointer mb-6 text-white"
               >
                 Log Emotions
               </button>
