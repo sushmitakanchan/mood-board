@@ -78,8 +78,6 @@ UI Layout — flexbox & grid with Tailwind.
 ☁️ Cloud sync (instead of only localStorage)
 
 📸 Screenshots
-
-(Add screenshots or GIFs of your app here)
 ![Preview](screenshot.png)
 
 🤝 Contributing
