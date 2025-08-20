@@ -1,12 +1,87 @@
-# React + Vite
+🌸 Mood Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React practice project where you can log your thoughts and emotions, manage them with edit / delete, and explore them with filtering and sorting features. Entries are stored in localStorage (keyed by date) so your data persists across sessions.
 
-Currently, two official plugins are available:
+✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎭 Log your mood — select an emotion and add a thought.
 
-## Expanding the ESLint configuration
+✏️ Edit & Delete — update or remove saved entries anytime.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🎨 Emotion Icons — each entry is paired with an emoji-like icon.
+
+📅 Sort by Date — view your entries in chronological order.
+
+🔍 Filter by Emotion — focus only on specific moods (e.g., Sad, Joyful).
+
+💾 LocalStorage Persistence — saves data in browser storage (grouped by date).
+
+🖼 Glassmorphism UI — clean, pastel-inspired interface with Tailwind CSS.
+
+🛠️ Tech Stack
+
+React ⚛️
+
+Tailwind CSS 🎨
+
+Lucide Icons ✨
+
+LocalStorage for persistence
+
+🚀 Getting Started
+1️⃣ Clone the repo
+git clone https://github.com/your-username/mood-board.git
+cd mood-board
+
+2️⃣ Install dependencies
+npm install
+
+3️⃣ Start the development server
+npm run dev
+
+
+App will be available at:
+👉 http://localhost:5173 (if using Vite)
+
+
+🔑 Core Logic
+
+State Management — uses React useState + useEffect hooks
+
+Persistence — thoughts stored in localStorage like:
+
+{
+  "2025-08-19": [
+    {
+      "emotion": "Joyful",
+      "thought": "Had a great coffee today ☕",
+      "createdAt": "2025-08-19T14:32:00.000Z"
+    }
+  ]
+}
+
+
+Sorting — newest first or oldest first (custom comparator).
+
+Filtering — dropdown for emotions.
+
+UI Layout — flexbox & grid with Tailwind.
+
+🎯 Future Improvements
+
+📊 Analytics (track mood frequency)
+
+🌈 Theme toggle (dark/light mode)
+
+📱 Mobile-friendly optimizations
+
+☁️ Cloud sync (instead of only localStorage)
+
+📸 Screenshots
+
+(Add screenshots or GIFs of your app here)
+![Preview](screenshot.png)
+
+🤝 Contributing
+
+This is a practice project, but feel free to fork, improve, and submit PRs!
