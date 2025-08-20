@@ -52,7 +52,12 @@ const MoodForm = ({ onHandlethoughts }) => {
               <button
                 onClick={(e) => {
                   e.preventDefault();
+                  if(!emotion){
+                    alert("Please select an emotion first");
+                    return
+                  }
                   setShowLogEmotionCard(true);
+                  
                 }}
                 className="bg-amber-600 p-2 rounded-lg h-10 min-w-70 hover:bg-amber-500 cursor-pointer mb-6 text-white"
               >

@@ -9,11 +9,19 @@ function App() {
   const saved = window.localStorage.getItem('thoughtsList');
    return saved ? JSON.parse(saved) : [];
   })
+    const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: '2-digit',
+    minute: '2-digit'
+  };
 // emotion: sad, happy, angry and thought: anything you write inside the textarea
   const onHandlethoughts = (emotion, thought) =>{
     console.log("emotion:", emotion);
     console.log("thought:", thought);
-    setThoughts((prev)=> [...prev, {emotion, thought}])
+    
+    setThoughts((prev)=> [...prev, {createdAt:new Date().toLocaleString("en-US", options), emotion, thought, timestamp: Date.now()}])
   }
 
   const editThought = (oldThought)=>{
